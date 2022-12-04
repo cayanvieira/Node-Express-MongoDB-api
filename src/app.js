@@ -1,16 +1,14 @@
 import express from "express";
 import db from "./config/dbConnect.js"
-import livros from "./models/Livro.js"
 import routes from"./routes/index.js"
+import dotenv from 'dotenv'
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
-db.on("error", console.log.bind(console, "Erro de conexão"))
-db.once("open", () => {
-    console.log("Conexão com o MongoDB feita com sucesso")
-})
+dotenv.config()
 
 const app = express()
 
-app.use(express.json())
-
 routes(app)
+
 export default app
